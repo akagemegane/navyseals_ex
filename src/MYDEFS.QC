@@ -25,6 +25,7 @@
 .float fire_finished;
 .float sight_active;
 .float weapons;
+.float		hand;
 float WP_ONE = 4096;
 float WP_MK23 = 1;
 float WP_MOSS = 2;

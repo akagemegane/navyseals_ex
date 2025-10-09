@@ -2671,126 +2671,294 @@ void() reload_mossberg2 = [10, reload_mossberg3]
 {
 	self.weaponframe = 17;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg3 = [10, reload_mossberg4]
 {
 	self.weaponframe = 18;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg4 = [10, reload_mossberg5]
 {
 	self.weaponframe = 19;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg5 = [10, reload_mossberg6]
 {
 	self.weaponframe = 20;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg6 = [10, reload_mossberg7]
 {
 	self.weaponframe = 21;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg7 = [10, reload_mossberg8]
 {
 	self.weaponframe = 22;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg8 = [10, reload_mossberg9]
 {
 	self.weaponframe = 23;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg9 = [10, reload_mossberg10]
 {
 	self.weaponframe = 24;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg10 = [10, reload_mossberg11]
 {
 	self.weaponframe = 25;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg11 = [10, reload_mossberg12]
 {
 	self.weaponframe = 26;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg12 = [10, reload_mossberg13]
 {
 	self.weaponframe = 27;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg13 = [10, reload_mossberg14]
 {
 	self.weaponframe = 28;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg14 = [10, reload_mossberg15]
 {
 	self.weaponframe = 29;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg15 = [10, reload_mossberg16]
 {
 	self.weaponframe = 30;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg16 = [10, reload_mossberg17]
 {
 	self.weaponframe = 31;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg17 = [10, reload_mossberg18]
 {
 	self.weaponframe = 32;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg18 = [10, reload_mossberg19]
 {
 	self.weaponframe = 33;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg19 = [10, reload_mossberg20]
 {
 	self.weaponframe = 34;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg20 = [10, reload_mossberg21]
 {
 	self.weaponframe = 35;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg21 = [10, reload_mossberg22]
 {
 	self.weaponframe = 36;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg22 = [10, reload_mossberg23]
 {
 	self.weaponframe = 37;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg23 = [10, reload_mossberg24]
@@ -2799,6 +2967,14 @@ void() reload_mossberg23 = [10, reload_mossberg24]
         if (self.mossclip == 8 || self.ammo_shells == 0)
 	  self.think = reload_mossberg29;    
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire (during shell loading loop)
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg24 = [10, reload_mossberg25]
@@ -2806,24 +2982,56 @@ void() reload_mossberg24 = [10, reload_mossberg25]
 	self.weaponframe = 39;
 	self.nextthink = time + 0.05;
         sound(self,CHAN_AUTO,"weapons/mk23in.wav",TRUE,ATTN_NORM);
+        
+        // Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg25 = [10, reload_mossberg26]
 {
 	self.weaponframe = 40;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg26 = [10, reload_mossberg27]
 {
 	self.weaponframe = 41;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg27 = [10, reload_mossberg28]
 {
 	self.weaponframe = 42;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg28 = [10, reload_mossberg23]
@@ -2840,12 +3048,28 @@ void() reload_mossberg28 = [10, reload_mossberg23]
           self.mossclip = self.mossclip + 1;      
           self.currentammo = self.ammo_shells = self.ammo_shells - 1;
         }
+        
+        // Allow canceling reload to fire (after adding shell)
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg29 = [10, reload_mossberg30]
 {
 	self.weaponframe = 44;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg30 = [10, reload_mossberg31]
@@ -2853,48 +3077,113 @@ void() reload_mossberg30 = [10, reload_mossberg31]
 	self.weaponframe = 45;
 	self.nextthink = time + 0.05;
       //sound(self,CHAN_AUTO,"weapons/mk23in.wav",TRUE,ATTN_NORM);
+      
+      // Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg31 = [10, reload_mossberg32]
 {
 	self.weaponframe = 46;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg32 = [10, reload_mossberg33]
 {
 	self.weaponframe = 47;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg33 = [10, reload_mossberg34]
 {
 	self.weaponframe = 48;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg34 = [10, reload_mossberg35]
 {
 	self.weaponframe = 49;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg35 = [10, reload_mossberg36]
 {
 	self.weaponframe = 50;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg36 = [10, reload_mossberg37]
 {
 	self.weaponframe = 51;
 	self.nextthink = time + 0.05;
+	
+	// Allow canceling reload to fire
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 void() reload_mossberg37 = [10, player_run]
 {
 	self.weaponframe = 52;
 	self.nextthink = time + 0.05;
+	self.reload = 0; // Clear reload flag
+	
+	// Allow canceling reload to fire (final frame)
+	if (self.button0 && self.mossclip > 0)
+	{
+		self.reload = 0;
+		self.think = player_run;
+		return;
+	}
 };
 
 

@@ -118,7 +118,6 @@ void		end_sys_globals;		// flag for structure dumping
 .string		model;
 .float		frame;
 .float		skin;
-.float		hand;
 .float		effects;
 
 .vector		mins, maxs;		// bounding box extents reletive to origin

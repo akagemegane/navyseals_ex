@@ -3,7 +3,6 @@
 - [ ] Split weapon selection between the Ka-Bar knife and the hand grenades.
 - [ ] Chasecam feature
 - [ ] Fix up flashbang effect (based on the player's gamma instead of a fixed value)
-- [ ] Allow player to cancel reloading half-way before firing
 - [ ] Retain handedness when player dies.
 - [ ] Adjust the laser sight (right-handed)
 - [ ] Prevent grenade priming from getting jammed upon item pickup
@@ -18,3 +17,4 @@
 - [X] Adjust the laser sight for right-handed weapon view models.
 - [X] Proper support for Deathmatch 3 rules
 - [X] Picking up PSG-1 and MP5 grants extras (but weapon stay is off until I figure it out)
+- [X] Allow Mossberg to cancel reloading mid-way before firing
