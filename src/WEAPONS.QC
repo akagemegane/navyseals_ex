@@ -1020,19 +1020,19 @@ void() W_SetCurrentAmmo =
            }
          if (self.hgrenade == 1)
            {
-            self.currentammo = self.ammo_rockets;
-            self.weaponmodel = "progs/v_gren.mdl";
-            self.weaponframe = 0;
-            if (!self.use_clip_as_ammo)
-              self.items = self.items | IT_ROCKETS;
+        self.currentammo = self.ammo_rockets;
+        self.weaponmodel = "progs/v_gren.mdl";
+        self.weaponframe = 0;
+        if (!self.use_clip_as_ammo)
+        self.items = self.items | IT_ROCKETS;
            }
 	}
         else if (self.weapon == WP_MK23)
 	{
-                  if (self.use_clip_as_ammo)
-                    self.currentammo = self.mk23clip;
-                  else
-                    self.currentammo = self.ammo_shells;
+        if (self.use_clip_as_ammo)
+        self.currentammo = self.mk23clip;
+        else
+        self.currentammo = self.ammo_shells;
 		// support for handedness
 		  if (self.hand == 2)
 		  {
@@ -1515,6 +1515,7 @@ void() W_Attack =
           }
          else
           {
+           self.attack_finished = time + 0;
            self.hgrenade == 0;
            self.impulse = 1;
            return;
@@ -1723,25 +1724,27 @@ void() W_ChangeWeapon =
         local   float   wp, am, fl;
 	
         wp = self.weapons;
-	am = 0;
+        am = 0;
 
       if (self.reload)
        return;
 	  if (self.zoomlevel != 0)
 	   return;
 
+// AKAGE : Disabled the hand grenades until I figure out a solution to the lockup problem
+/*
 	if (self.impulse == 1)
 	{
-          if (self.ammo_rockets < 1) 
+          if (self.ammo_rockets < 1)
            {
             fl = WP_ONE;
             self.hgrenade = 0;
            }
-          else
-           { 
+           else
+           {
             if (self.hgrenade == 1)
              {
-                  fl = WP_ONE;
+              fl = WP_ONE;
               self.hgrenade = 0;
              }
             else
@@ -1751,6 +1754,16 @@ void() W_ChangeWeapon =
              }
            }
 	}
+*/
+
+	if (self.impulse == 1)
+	{
+           {
+            fl = WP_ONE;
+            self.hgrenade = 0;
+           }
+	}
+
 	else if (self.impulse == 2)
 	{
                 fl = WP_MK23;
@@ -1761,16 +1774,16 @@ void() W_ChangeWeapon =
 	{
                 fl = WP_MOSS;
                 if (self.mossclip < 1 && self.ammo_shells < 1)
-			am = 1;
+                am = 1;
 	}
         else if ((self.impulse == 4) && (self.weapon != WP_MP5))
        {
                   self.semiauto == 0;
                   fl = WP_MP5;
-               if ( (self.mp5clip < TRUE && self.ammo_nails < 1) ) {
-
+               if ( (self.mp5clip < TRUE && self.ammo_nails < 1) )
+               {
                 am = TRUE;
-         }
+               }
        }
         else if ((self.impulse == 4) && (self.weapon == WP_MP5))
        {
@@ -1786,37 +1799,37 @@ void() W_ChangeWeapon =
 	{
                 fl = WP_ASHOT;
                 if (self.ammo_shells < 2)
-			am = 1;
+                am = 1;
 	}
         else if ((self.impulse == 6) && (self.weapon != WP_M16))
 	{
                 fl = WP_M16;
                 if (self.m16clip < 1 && self.ammo_nails < 1)
-			am = 1;
+                am = 1;
 	}
         else if ((self.impulse == 6) && (self.weapon == WP_M16))
 	{
                 fl = WP_M16RAW;
 		if (self.ammo_rockets < 1)
-			am = 1;
+                am = 1;
 	}
         else if ((self.impulse == 7) && (self.weapon != WP_PSG1))
 	{
                 fl = WP_PSG1;
                 if (self.psg1clip < 1 && self.ammo_rockets < 1)
-			am = 1;
+                am = 1;
 	}
         else if ((self.impulse == 7) && (self.weapon == WP_PSG1))
 	{
                 fl = WP_BARRETT;
                 if (self.psg1clip < 1 && self.ammo_rockets < 1)
-			am = 1;
+                am = 1;
 	}
 	else if (self.impulse == 8)
 	{
                 fl = WP_M60;
                 if (self.m60clip < 1 && self.ammo_cells < 1)
-                	am = 1;
+                am = 1;
 	}
 
 	self.impulse = 0;

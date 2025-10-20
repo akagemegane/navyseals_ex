@@ -548,9 +548,9 @@ void() PutClientInServer =
 	self.invincible_finished = 0;
 	self.effects = 0;
 	self.invincible_time = 0;
-        self.use_clip_as_ammo = TRUE;
-        self.zoomlevel = 0;
-        DecodeLevelParms ();
+	self.use_clip_as_ammo = TRUE;
+	self.zoomlevel = 0;
+	DecodeLevelParms ();
 
 	W_SetCurrentAmmo ();
 

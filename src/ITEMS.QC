@@ -407,7 +407,7 @@ float() W_BestWeapon;
 
 void() weapon_touch =
 {
-        local   float   hadammo, best, new, newitem, old;
+    local   float   hadammo, best, new, newitem, old;
 	local	entity	stemp;
 	local	float	leave;
 
@@ -416,7 +416,7 @@ void() weapon_touch =
 		return;
 
 // if the player was using his best weapon, change up to the new one if better
-     if (!self.reload)
+	if (!self.reload)
      {
 	stemp = self;
 	self = other;
@@ -458,18 +458,18 @@ void() weapon_touch =
 			return;
 		hadammo = other.ammo_nails;
 		// change to mpsd5 if already in possesion
-                if (other.items & IT_NAILGUN)
-                {
-                  new = WP_MP5;
-                  new = WP_MP5SD;
-                  newitem = IT_NAILGUN;
-                  self.netname = "H&K MP5-SD";
-                }
-                other.ammo_nails = other.ammo_nails + 30;
-                other.mp5clip = 30;
+			if (other.items & IT_NAILGUN)
+			{
+				new = WP_MP5;
+				new = WP_MP5SD;
+				newitem = IT_NAILGUN;
+				self.netname = "H&K MP5-SD";
+			}
+		other.ammo_nails = other.ammo_nails + 30;
+		other.mp5clip = 30;
 		self.nextthink = time + 5;
 		self.think = SUB_regen;
-        }	
+	}
 	
 /*       
 	else if (self.classname == "weapon_mp5sd")
@@ -482,25 +482,26 @@ void() weapon_touch =
                 other.ammo_nails = other.ammo_nails + 30;
                 other.mp5clip = 30;
         }
-*/       
+*/
+
 	else if (self.classname == "weapon_supernailgun")
 	{
 		if (leave && (other.items & IT_SUPER_NAILGUN) )
-			return;
+		return;
 		hadammo = other.ammo_rockets;
-                new = WP_ASHOT;
-                newitem = IT_SUPER_NAILGUN;
+		new = WP_ASHOT;
+		newitem = IT_SUPER_NAILGUN;
 		other.ammo_nails = other.ammo_nails + 30;
 	}
 	else if (self.classname == "weapon_supershotgun")
 	{
 		if (leave && (other.items & IT_SUPER_SHOTGUN) )
-			return;
+		return;
 		hadammo = other.ammo_rockets;
-                new = WP_MOSS;
-                newitem = IT_SUPER_SHOTGUN;
+		new = WP_MOSS;
+		newitem = IT_SUPER_SHOTGUN;
 		other.ammo_shells = other.ammo_shells + 5;
-                other.mossclip = 8;
+		other.mossclip = 8;
         }
 //	else if (self.classname == "weapon_rocketlauncher")
 	else if ( (self.classname == "weapon_rocketlauncher") && (deathmatch =- 1) )
@@ -508,19 +509,19 @@ void() weapon_touch =
 		if (leave && (other.items & IT_ROCKET_LAUNCHER) )
 			return;
 		hadammo = other.ammo_rockets;
-                // give barrett if already has psg1
-                if (other.items & IT_ROCKET_LAUNCHER)
-                {
-                  new = WP_BARRETT;
-                  self.netname = "Barrett M82 Sniper Rifle";
-                }
-                else
-                {
-                  new = WP_PSG1;
-                  newitem = IT_ROCKET_LAUNCHER;
-                }								
-                other.ammo_rockets = other.ammo_rockets + 5;
-                other.psg1clip = 20;
+		// give barrett if already has psg1
+		if (other.items & IT_ROCKET_LAUNCHER)
+			{
+				new = WP_BARRETT;
+				self.netname = "Barrett M82 Sniper Rifle";
+			}
+			else
+			{
+			new = WP_PSG1;
+			newitem = IT_ROCKET_LAUNCHER;
+			}
+		other.ammo_rockets = other.ammo_rockets + 5;
+		other.psg1clip = 20;
 		self.nextthink = time + 10;
 		self.think = SUB_regen;
         }
@@ -530,12 +531,12 @@ void() weapon_touch =
 		if (leave && (other.items & IT_ROCKET_LAUNCHER) )
 			return;
 		hadammo = other.ammo_rockets;
-                // give barrett if already has psg1
-                  new = WP_PSG1;
-				  new = WP_BARRETT;
-                  newitem = IT_ROCKET_LAUNCHER;
-                other.ammo_rockets = other.ammo_rockets + 5;
-                other.psg1clip = 20;
+		// give barrett if already has psg1
+		new = WP_PSG1;
+		new = WP_BARRETT;
+		newitem = IT_ROCKET_LAUNCHER;
+		other.ammo_rockets = other.ammo_rockets + 5;
+		other.psg1clip = 20;
 		self.nextthink = time + 5;
 		self.think = SUB_regen;
         }
@@ -555,22 +556,24 @@ void() weapon_touch =
         else if (self.classname == "weapon_grenadelauncher")
 	{
 		if (leave && (other.items & IT_GRENADE_LAUNCHER) )
-                  return;
-		hadammo = other.ammo_rockets;
-                // give m16_raw if already m16 in possession
-                if (other.items & IT_GRENADE_LAUNCHER)
-                {
-                  new = WP_M16RAW;
-                  self.netname = "M16-A2 RAW";
-                }
-                else
-                {
-                  new = WP_M16;
-                  newitem = IT_GRENADE_LAUNCHER;
-                }
-                other.ammo_nails = other.ammo_nails + 40;
-                other.m16clip = 40;
-                // BUG in NS2.0
+		return;
+			hadammo = other.ammo_rockets;
+		// give m16_raw if already m16 in possession
+		if (other.items & IT_GRENADE_LAUNCHER)
+			{
+				new = WP_M16RAW;
+				self.netname = "M16-A2 RAW";
+			}
+		else
+			{
+				new = WP_M16;
+				newitem = IT_GRENADE_LAUNCHER;
+			}
+			other.ammo_nails = other.ammo_nails + 40;
+			other.m16clip = 40;
+
+
+		// BUG in NS2.0
 		//other.ammo_rockets = other.ammo_rockets + 5;
 	}
        /*
@@ -584,15 +587,16 @@ void() weapon_touch =
 		other.ammo_rockets = other.ammo_rockets + 5;
 	}
        */
+
         else if (self.classname == "weapon_lightning")
 	{
 		if (leave && (other.items & IT_LIGHTNING) )
 			return;
 		hadammo = other.ammo_rockets;
-                new = WP_M60;
-                newitem = IT_LIGHTNING;
+		new = WP_M60;
+		newitem = IT_LIGHTNING;
 		other.ammo_cells = other.ammo_cells + 15;
-                other.m60clip = 200;
+		other.m60clip = 200;
 	}
 	else
 		objerror ("weapon_touch: unknown classname");
@@ -616,30 +620,34 @@ void() weapon_touch =
 
 // change to the weapon
 	old = other.items;
-        other.items = other.items | newitem;
-        other.weapons = other.weapons | new;
+	other.items = other.items | newitem;
+	other.weapons = other.weapons | new;
 
 	stemp = self;
 	self = other;
-        if (!self.reload)
+
+
+	// AKAGE: Might disable auto weapon switch
+		if (!self.reload)
         {
-         if (!deathmatch)
+        if (!deathmatch)
                  self.weapon = new;
-         else
+        else
                  Deathmatch_Weapon (old, new);
         }
-         // SEAL sQad modification, bot gets notified and picks best weapon
-         if (self.classname == "player" && !self.reload)
-         {
+
+        // SEAL sQad modification, bot gets notified and picks best weapon
+        if (self.classname == "player" && !self.reload)
+        {
             W_SetCurrentAmmo();
-         }
-         else if (self.classname == "bot")
-          { // notify pick up to SquadMember
+        }
+		else if (self.classname == "bot")
+		{ // notify pick up to SquadMember
             Squad_AI_TouchedStuff(other, self);
             local float bestWeapon;
             bestWeapon = Squad_AI_BestWeapon(other, other.enemy);
             Squad_AI_ChangeWeapon(other, bestWeapon);
-          }
+		}
 
 	self = stemp;
 
@@ -664,7 +672,7 @@ void() weapon_supershotgun =
 {
 	precache_model ("progs/g_moss.mdl");
 	setmodel (self, "progs/g_moss.mdl");
-        self.weapon = WP_MOSS;
+	self.weapon = WP_MOSS;
 	self.netname = "Mossberg Tactical Shotgun";
 	self.touch = weapon_touch;
 	setsize (self, '-16 -16 0', '16 16 56');
@@ -678,8 +686,8 @@ void() weapon_nailgun =
 {
 	precache_model ("progs/g_mp5.mdl");
 	setmodel (self, "progs/g_mp5.mdl");
-        self.weapon = WP_MP5;
-        self.netname = "H&K MP5";
+    self.weapon = WP_MP5;
+	self.netname = "H&K MP5";
 	self.touch = weapon_touch;
 	setsize (self, '-16 -16 0', '16 16 56');
 	StartItem ();

@@ -14,14 +14,14 @@ void() HandGrenadeTouch =
 	if (other.takedamage == DAMAGE_AIM)
 	{
 //		M16GrenadeExplode();
-            self.velocity = self.velocity * 0.3;
+		self.velocity = self.velocity * 0.3;
 		return;
 	}
       
       rand = random();
       if (rand < 0.333)
        { 
-    	  sound (self, CHAN_WEAPON, "weapons/gbounce1.wav", 1, ATTN_NORM);	// bounce sound
+		sound (self, CHAN_WEAPON, "weapons/gbounce1.wav", 1, ATTN_NORM);	// bounce sound
        }
       if ( (rand < 0.666) && (rand >= 0.333) )
        {
@@ -40,7 +40,7 @@ void() FlashExplode =
 	T_RadiusDamage (self, self.owner, 20, other);
 	T_FlashDamage (self, self.owner,1000, self);
 
-        sound (self, CHAN_WEAPON, "doors/airdoor2.wav", 1, ATTN_NORM);
+	sound (self, CHAN_WEAPON, "doors/airdoor2.wav", 1, ATTN_NORM);
 	self.origin = self.origin - 8*normalize(self.velocity);
 	
 
@@ -91,14 +91,14 @@ void() W_FireHandGrenade =
 	//missile.nextthink = time + 3;
 	//missile.think = M16GrenadeExplode;
 	//if (self.grenadetype == 0) missile.think = M16GrenadeExplode;
-        //else if (self.grenadetype == 1) missile.think = FlashExplode;
-  missile.search_time = time + 3.0;
-  missile.nextthink   = time + 0.1;
-  missile.grenadetype = self.grenadetype;
-  missile.think       = W_PredictMissileDestination;
+	//else if (self.grenadetype == 1) missile.think = FlashExplode;
+	missile.search_time = time + 3.0;
+	missile.nextthink   = time + 0.1;
+	missile.grenadetype = self.grenadetype;
+	missile.think       = W_PredictMissileDestination;
 // end - NAVY SEALs sQuad bots addition
-        self.hgrenadefired = TRUE;
-        setmodel (missile, "progs/m16gren.mdl");
+	self.hgrenadefired = TRUE;
+	setmodel (missile, "progs/m16gren.mdl");
 	setsize (missile, '0 0 0', '1 1 1');
 	setorigin (missile, self.origin + (v_forward * 40.000) - (v_right * 11.000) + (v_up *    11.000));
 
