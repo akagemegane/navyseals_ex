@@ -1536,12 +1536,17 @@ void() W_Attack =
 		  self.attack_finished = time + 0.18;
              }
          }
-        else
+        else if (self.ammo_shells == 0)
          {
+            sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+			self.attack_finished = time + 0.5;
+         }
+		 else
+		 {
             sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
 			player_reload_mk23();
             self.attack_finished = time + 0.5;
-         }
+		 }
 	}
         else if (self.weapon == WP_MOSS)
 	{
@@ -1550,12 +1555,17 @@ void() W_Attack =
 		player_mossberg ();
 		self.attack_finished = time + 0.850;
          }
-        else 
+        else if (self.ammo_shells == 0)
          {
-            sound (self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
-			player_reload_mossberg();
-            self.attack_finished = (time + 0.400);
+            sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+			self.attack_finished = time + 0.400;
          }
+		 else
+		 {
+            sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+			player_reload_mossberg();
+            self.attack_finished = time + 0.400;
+		 }
 
 	}
         else if (self.weapon == WP_MP5)
@@ -1575,12 +1585,17 @@ void() W_Attack =
                       {
                        player_mp5a ();
                       }                                   
-                  else 
+                  else if (self.ammo_nails == 0)
                     {
+                     sound (self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+                     self.attack_finished = (time + 0.400);
+                    }
+				  else
+				    {
                      sound (self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
 					 player_reload_mp5();
                      self.attack_finished = (time + 0.400);
-                    }
+					}
 
       }
         else if (self.weapon == WP_MP5SD)
@@ -1600,14 +1615,18 @@ void() W_Attack =
                       {
                        player_mp5sda ();
                       }                                   
-                  else 
+                  else if (self.ammo_nails == 0)
                     {
+                     sound (self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+                     self.attack_finished = (time + 0.400);
+                    }
+					else
+					{
                      sound (self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
 					 player_reload_mp5sd();
                      self.attack_finished = (time + 0.400);
-                    }
-
-      }
+					}
+    }
         
         else if (self.weapon == WP_ASHOT)
 	{
@@ -1621,12 +1640,17 @@ void() W_Attack =
               player_m16a();
               self.attack_finished = time + 0.1;
            }
-          else
+          else if (self.ammo_nails == 0)
            {
+            sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
+            self.attack_finished = time + 0.4;
+           }
+		   else
+		   {
             sound(self,CHAN_WEAPON,"weapons/mp5click.wav",TRUE,ATTN_NORM);
 			player_reload_m16();
             self.attack_finished = time + 0.4;
-           }
+		   }
 	}
         else if (self.weapon == WP_M16RAW)
 	{
@@ -1640,12 +1664,17 @@ void() W_Attack =
 		player_psg1();
 		self.attack_finished = time + 0.5;
            }
-          else
+          else if (self.ammo_rockets == 0)
            {
+            sound(self,CHAN_WEAPON,"weapons/mp5click.wav",1,ATTN_NORM);
+            self.attack_finished = time + 0.5;
+           }
+		   else 
+		   {
             sound(self,CHAN_WEAPON,"weapons/mp5click.wav",1,ATTN_NORM);
 			player_reload_psg1();
             self.attack_finished = time + 0.5;
-           }
+		   }
 	}
         else if (self.weapon == WP_BARRETT)
 	{
