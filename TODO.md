@@ -1,3 +1,5 @@
+# Deprecated since I will be using the Issues tab going forward.
+
 # To-do
 - [ ] Modify the weapon view models to have non-fullbright arms.
 - [ ] Split weapon selection between the Ka-Bar knife and the hand grenades.
