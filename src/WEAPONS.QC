@@ -412,132 +412,55 @@ void() Remove_Laser_Sights =
 
 void() Sight_Think =
 {
-   local vector src;
+    local vector src, end;
 
-   if (self.owner.reload || self.owner.health <= 0)
-   {
-      self.owner.sight_active = FALSE;
-      remove(self);
-      return;
-   }
-     {
-      if (self.owner.weapon == WP_MP5 || self.owner.weapon == WP_MP5SD)
-       {
-        makevectors (self.owner.v_angle);
-        src = (self.owner.origin + (v_forward * TE_LAVASPLASH));
-        src_z = (self.owner.absmin_z + (self.owner.size_z * 0.800));
-        src_y = (self.owner.absmin_y + (self.owner.size_y * 0.400));
+    if (self.owner.reload || self.owner.health <= 0)
+    {
+        self.owner.sight_active = FALSE;
+        remove(self);
+        return;
+    }
 
-		if (self.owner.hand == 0)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 110.000)) -                   (v_right * 55)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 1)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 110.000)) -                   (v_right * 75)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 2)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 110.000)) -                   (v_right * 75)),FALSE,self.owner);
-        }
+    makevectors(self.owner.v_angle);
 
-        self.lrange = vlen(self.owner.origin - trace_endpos);
-        self.origin = (trace_endpos - (v_forward*10) );
-       }
-      if (self.owner.weapon == WP_MK23)
-       {
-        makevectors (self.owner.v_angle);
-        src = (self.owner.origin + (v_forward * TE_LAVASPLASH));
-        src_z = (self.owner.absmin_z + (self.owner.size_z * 0.800));
-        src_y = (self.owner.absmin_y + (self.owner.size_y * 0.400));
-		if (self.owner.hand == 0)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 50.000)) -                   (v_right * 300)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 1)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 50.000)) -                   (v_right * 320)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 2)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 50.000)) -                   (v_right * 320)),FALSE,self.owner);
-        }
-		self.lrange = vlen(self.owner.origin - trace_endpos);
-        self.origin = (trace_endpos - (v_forward*10) );
-       }
-     
-      if (self.owner.weapon == WP_M16)
-       {
-        makevectors (self.owner.v_angle);
-        src = (self.owner.origin + (v_forward * TE_LAVASPLASH));
-        src_z = (self.owner.absmin_z + (self.owner.size_z * 0.800));
-        src_y = (self.owner.absmin_y + (self.owner.size_y * 0.400));		
-		if (self.owner.hand == 0)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 130.000)) -                   (v_right * 220)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 1)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 130.000)) -                   (v_right * 240)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 2)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 130.000)) -                   (v_right * 240)),FALSE,self.owner);
-        }
-        self.lrange = vlen(self.owner.origin - trace_endpos);
-        self.origin = (trace_endpos - (v_forward*10) );
-       }
-     
+    src = self.owner.origin + (v_forward * 10); // TE_LAVASPLASH is usually 10
+    src_z = self.owner.absmin_z + (self.owner.size_z * 0.8);
+    src_y = self.owner.absmin_y + (self.owner.size_y * 0.4);
 
-      if (self.owner.weapon == WP_PSG1 || self.owner.weapon == WP_BARRETT)
-       {
-        makevectors (self.owner.v_angle);
-        src = (self.owner.origin + (v_forward * TE_LAVASPLASH));
-        src_z = (self.owner.absmin_z + (self.owner.size_z * 0.800));
-        src_y = (self.owner.absmin_y + (self.owner.size_y * 0.400));
-        if (self.owner.zoomlevel != 0)
-        {		
-         traceline (src,src + (v_forward * IT_CELLS),FALSE,self.owner);
-        }
-        else
-        {	
-		if (self.owner.hand == 0)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 90.000)) -                   (v_right * 120)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 1)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 90.000)) -                   (v_right * 140)),FALSE,self.owner);
-        }
-		if (self.owner.hand == 2)
-		{
-        traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 90.000)) -                   (v_right * 140)),FALSE,self.owner);
-        }
-			
-        }
+    local float up_off, right_off;
 
-        self.origin = (trace_endpos - (v_forward*10) );
-        self.lrange = vlen(self.owner.origin - trace_endpos);          
+    if (self.owner.weapon == WP_MP5 || self.owner.weapon == WP_MP5SD) {
+        up_off = 110;
+        right_off = (self.owner.hand == 0) ? 55 : 75;
+    }
+    else if (self.owner.weapon == WP_MK23) {
+        up_off = 50;
+        right_off = (self.owner.hand == 0) ? 300 : 320;
+    }
+    else if (self.owner.weapon == WP_M16) {
+        up_off = 130;
+        right_off = (self.owner.hand == 0) ? 220 : 240;
+    }
+    else if (self.owner.weapon == WP_PSG1 || self.owner.weapon == WP_BARRETT) {
+        if (self.owner.zoomlevel != 0) {
+            up_off = 0; right_off = 0; // Straight forward
+        } else {
+            up_off = 90;
+            right_off = (self.owner.hand == 0) ? 120 : 140;
+        }
+    }
 
-       }
-     
+    end = src + (v_forward * IT_CELLS) - (v_up * up_off) - (v_right * right_off);
+    traceline(src, end, FALSE, self.owner);
 
-     }
-      if (self.lrange > 600) 
-       {
-        self.frame = 2;
-       }
-      else if (self.lrange > 300)
-       {
-        self.frame = 1;
-       }
-      else 
-       {
-        self.frame = 0;
-       }
+    self.lrange = vlen(self.owner.origin - trace_endpos);
+    setorigin(self, trace_endpos - (v_forward * 10));
 
-   self.nextthink = time;
-   self.think = Sight_Think;
+    if (self.lrange > 600)      self.frame = 2;
+    else if (self.lrange > 300) self.frame = 1;
+    else                        self.frame = 0;
+
+    self.nextthink = time + 0.05;
 };
 
 void (vector org) DrawLaser =
