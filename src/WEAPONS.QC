@@ -414,10 +414,10 @@ void() Sight_Think =
 {
    local vector src;
 
-   if (self.owner.reload)
+   if (self.owner.reload || self.owner.health <= 0)
    {
-      remove(self);
       self.owner.sight_active = FALSE;
+      remove(self);
       return;
    }
      {
