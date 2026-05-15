@@ -82,7 +82,7 @@ void () Squad_AI_Wait =
     }
   else
   if (Squad_GetState(self) == SQUAD_MEMBERAMBUSH)
-    { local float dummy;
+    {
     }
 
   // all remaining states
@@ -305,7 +305,6 @@ void(float dist) Squad_AI_Run =
   // state SQUAD_MEMBERATTACK
   if (Squad_GetState(self) == SQUAD_MEMBERATTACK)
     { // forget about rockets - just move to target
-      local float dummy;
     }
   else
   // state SQUAD_MEMBERSPREAD
@@ -647,7 +646,7 @@ float () Squad_AI_IncomingGrenadeDetect =
           (grenade.owner.team != self.team)
          )
       if ((fDist < 300) && (visible(grenade)))
-        { local vector v_grenade;
+        {
           v_grenade = grenade.dest - self.origin;
           makevectors(v_grenade);
           v_grenade = v_forward;
@@ -712,20 +711,27 @@ void (entity member) Squad_AI_InitSidesInfo =
 //
 //
 float (entity member) Squad_AI_CheckSides =
-{ makevectors(member.angles);
+{
+  makevectors(member.angles);
   local vector left, right;
   local float  fleft, fright;
   local float  cleft, cright;
+  local float  triggeredCheck;
+  
   cleft  = FALSE;
   cright = FALSE;
+  triggeredCheck = FALSE;
+  
   left   = member.origin - 800 * v_right;
   right  = member.origin + 800 * v_right;
+  
   // check left
   traceline(member.origin, left, TRUE, member);
   fleft  = 800 * trace_fraction;
   //bprint("left/right = ");
   //bprint(ftos(800 * trace_fraction));
   //bprint(" / ");
+  
   // check right
   traceline(member.origin, right, TRUE, member);
   fright = 800 * trace_fraction;
@@ -739,20 +745,26 @@ float (entity member) Squad_AI_CheckSides =
       if (fright - member.dest1_y > 200)
         cright = TRUE;
       if (cleft || cright)
-        { member.dest1_z = time;
+        { 
+		  triggeredCheck = TRUE;
+		  member.dest1_z = time;
+		  
           // now check
           Squad_SetState(member, SQUAD_MEMBERCHECK);
+		  
           // if both cleft and cright, choose 1
           if (cleft && cright)
           if (random() > 0.5)
             cleft  = FALSE;
           else
             cright = FALSE;
+			
           // reprogram direction and speed
           if (cleft)
             member.ideal_yaw = anglemod(member.ideal_yaw + 90);
           else
             member.ideal_yaw = anglemod(member.ideal_yaw - 90);
+			
           // single check required, higher turn speed
           member.squadStrafeDirection =  0;
           member.yaw_speed            = 10.0;
@@ -761,6 +773,8 @@ float (entity member) Squad_AI_CheckSides =
   // store new values
   member.dest1_x = fleft;
   member.dest1_y = fright;
+  
+  return triggeredCheck;
 };
 
 
@@ -1546,9 +1560,7 @@ void  (entity member, float someWeapon) Squad_AI_ChangeWeapon =
 //
 //
 float (entity member, entity bogey) Squad_AI_BestWeapon =
-{ local float it;
-  local float dist;
-
+{
   // NS squadbot hack
   return member.weapon;
 /*
@@ -1609,8 +1621,7 @@ entity (entity member, entity subject) Squad_AI_HasClearLineOfFire =
 
   local vector spot1,   spot2;
   local vector v_aim_dir, v_spread;
-  local float  size_h,  size_v, v_aim_len;
-  local float  alpha_h, alpha_v;
+  local float  v_aim_len;
 
   // define spread
   v_spread = '0.04 0.04 0';

@@ -405,7 +405,7 @@ void () MenuAction_ExitMenu =
 //
 //
 void () MenuAction_None =
-{ local float dummy;
+{ 
 };
 
 
@@ -435,7 +435,6 @@ MenuSpawnWeapon =
   wpnpos             = theplayer.origin + v_forward * 80;
 
   // test for space, if fails, return world
-  local float  result;
   local vector testpos;
   testpos = wpnpos + v_forward * 16 + v_right * 16;
   traceline(theplayer.origin, testpos, TRUE, theplayer);

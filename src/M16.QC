@@ -45,7 +45,6 @@ void()	m16_explode17	=	[16,		SUB_Remove] {self.nextthink = time + 0.03;};
 
 void() shrapnel_touch =
 {
-local float rand;
 	if (other == self.owner)
 		return;
 
@@ -248,7 +247,7 @@ void() M16GrenadeTouch =
 
 void() W_FireM16Grenade =
 {
-	local	entity missile, mpuff;
+	local	entity missile;
 	
 	sound (self, CHAN_WEAPON, "weapons/grenlaun.wav", 1, ATTN_NORM);
 

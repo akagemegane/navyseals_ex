@@ -102,7 +102,7 @@ void (float dist) Squad_Behavior_Move =
           }
         else
           { //bprint("- drop to floor\n");
-            droptofloor();
+            droptofloor(self.angles_y, 256);
           }
       }
   }
@@ -496,9 +496,6 @@ float (entity member1, entity member2) Squad_Behavior_WaypointNodeDistance =
 
   // now, try to move from waypoint1 to waypoint2
   // (in upto SQUAD_MAX_NODES_SEARCH steps)
-  local float  steps;
-  local float  direction;
-  local entity point;
   direction = member1.squadWaypointDirection;
   steps = 0;
   point = waypoint1;

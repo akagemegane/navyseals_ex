@@ -56,7 +56,7 @@ void() FlashExplode =
 
 void() W_FireHandGrenade =
 {
-	local	entity missile, mpuff;
+	local	entity missile;
 	
 	self.punchangle_x = -2;
 

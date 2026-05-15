@@ -194,57 +194,66 @@ void ()  Squad_Info =
 //
 void (entity member, float memberstate) Squad_SetState =
 { // first prohibit invalid state changes
+  local float previousState;
+  
   if (member.squadmemberstate == memberstate)
+  {
     return;
-  if ((member.squadmemberstate == SQUAD_MEMBERDIE) &&
-      (memberstate != SQUAD_MEMBERPATROL)
-     )
-    return;
+  }
+  
+  if ((member.squadmemberstate == SQUAD_MEMBERDIE))
+  {
+	  if (memberstate != SQUAD_MEMBERPATROL)
+	  {
+		  return;
+	  }
+  }
 
   // record current old state
-  local float previousState;
   previousState = member.squadmemberstate;
 
   // change some state changes if team is regrouping
-  if ((Squad_Team_IsRegrouping(teamAlpha)) &&
-      ((memberstate == SQUAD_MEMBERPATROL) ||
-       (memberstate == SQUAD_MEMBERHUNTSTUFF))
-     )
-    { if (Squad_AI_TryAssembly(member, alphaAssemblyLocation))
+if (Squad_Team_IsRegrouping(teamAlpha))
+  {
+    if ((memberstate == SQUAD_MEMBERPATROL) || (memberstate == SQUAD_MEMBERHUNTSTUFF))
+    {
+      if (Squad_AI_TryAssembly(member, alphaAssemblyLocation))
+      {
         return;
+      }
     }
-
+  }
+  
   // state exit processing
   if (member.squadmemberstate == SQUAD_MEMBERATTACK)
     { // correct th_run to normal AI processing
       member.th_run = Squad_Anim_Run;
     }
-  else
-  if ((member.squadmemberstate == SQUAD_MEMBERASSEMBLE)
-      &&
-      ((memberstate != SQUAD_MEMBERPOSITION) &&
-       (memberstate != SQUAD_MEMBERGUARD)
-      )
-     )
-    { // leaving team assembly
-      Squad_Team_LeaveAssembly(teamAlpha, member);
-    }
-  else
-  if (((member.squadmemberstate == SQUAD_MEMBERPOSITION) ||
-       (member.squadmemberstate == SQUAD_MEMBERGUARD)
-      )
-      &&
-      ((memberstate != SQUAD_MEMBERGUARD)
-      )
-     )
-    { // leaving team formation
-      Squad_Team_LeaveFormation(teamAlpha, member);
-      // maybe also leave assembly
-      if (memberstate != SQUAD_MEMBERASSEMBLE)
-        Squad_Team_LeaveAssembly(teamAlpha, member);
-    }
-
+  else if ((member.squadmemberstate == SQUAD_MEMBERASSEMBLE))
+  {
+	  if (memberstate != SQUAD_MEMBERPOSITION)
+	  {
+		  if (memberstate != SQUAD_MEMBERGUARD)
+		  {
+			  Squad_Team_LeaveAssembly(teamAlpha, member);
+		  }
+	  }
+  }
+  else if (((member.squadmemberstate == SQUAD_MEMBERPOSITION) || (member.squadmemberstate == SQUAD_MEMBERGUARD)))
+  {
+	  if (memberstate != SQUAD_MEMBERGUARD)
+	  {
+		  Squad_Team_LeaveFormation(teamAlpha, member);
+		  // maybe also leave assembly
+			if (memberstate != SQUAD_MEMBERASSEMBLE)
+			{
+				Squad_Team_LeaveAssembly(teamAlpha, member);
+			}
+	  }
+  }
+    
   // change state - prohibit invalid transitions
+  member.squadmemberstate = memberstate;
   //
 
   member.squadmemberstate = memberstate;
@@ -537,7 +546,7 @@ void () Squad_MemberDeactivate =
   Squad_Team_Leave(self);
 
   // lay down on floor
-  droptofloor();
+  droptofloor(self.angles_y, 256);
 
   self.solid    = SOLID_NOT;
   self.deadflag = DEAD_DEAD;
@@ -643,7 +652,7 @@ void (entity member) Squad_MemberInit =
   member.th_pain      = Squad_AI_ReceiveDamage;
   member.th_die       = Squad_Anim_Die;
   member.th_missile   = Squad_AI_StartAttack;
-  member.attack_state == AS_MISSILE;
+  member.attack_state = AS_MISSILE;
   setsize (member, VEC_HULL_MIN, VEC_HULL_MAX);
   Squad_SetPosture(member, SQUAD_POSTURE_STAND);
 
@@ -660,8 +669,6 @@ void (entity member) Squad_MemberInit =
   Squad_SetState(member, SQUAD_MEMBERWAIT);
   Squad_MemberAnnounce(member);
 };
-
-
 
 // Squad_MemberInitRole - subroutine for member initialization,
 //                        role specific parts only
@@ -836,7 +843,9 @@ float (entity member)  Squad_GetRole =
 //
 //
 float (entity member, float role) Squad_SetRole =
-{ member.weaponframe = role;
+{
+	member.weaponframe = role;
+	return TRUE;
 };
 
 

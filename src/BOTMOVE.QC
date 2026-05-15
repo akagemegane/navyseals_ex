@@ -110,7 +110,6 @@
 .float   movetogoal_watchdog;
 .vector  old_origin;
 .entity  maker;
-float    botnofind;
 
 // start modification, William
 .float   watertype2;
@@ -419,7 +418,6 @@ void(float run_type) norse_movetogoal =
    a = actual_origin; a_z = 0;
    b = self.origin; b_z = 0;
    horiz_dist = fabs(vlen (a - b));
-   local float r;
 
    if (self.goalentity == self.enemy)
    {
@@ -738,10 +736,6 @@ void(float run_type) norse_movetogoal =
    // or three units high blocking the foot of bot.
 
    local float hop_factor;
-   local float checka1, checkb1;
-   local float incline1;
-   local float incline2;
-   local float incline3;
 
    // hop factor is used if bot is on a map in which sv_gravity
    // has been altered.
@@ -812,7 +806,6 @@ void(float run_type) norse_movetogoal =
    }
 
 
-   local vector   start, end, ahead;
    local vector projected_dest;
    local float LAVA_LEAP;
 
@@ -945,8 +938,6 @@ OOPS - William */
 float (entity me) norse_jumpgoal =
 {
    local vector  dir, actual_origin, dir_angles;
-   local vector start, end;
-   local float pc;
    local float dist;
    actual_origin = real_origin(me.goalentity);
    actual_origin_z = me.origin_z;
@@ -1009,8 +1000,6 @@ float (entity me) norse_jump_barrier =
 
    local vector  dir, actual_origin, dir_angles;
    local vector start, end;
-   local float check1, check2, check3, check4, check5;
-   local float pc;
    local float dist;
    actual_origin = real_origin(me.goalentity);
    actual_origin_z = me.origin_z;
@@ -1046,7 +1035,6 @@ float (entity me) norse_jump_barrier =
 
    v_forward_z = 0;
 
-   local vector start, end;
 
    start = me.origin + me.view_ofs + v_up * 18;
    end = start + v_forward * 48;
@@ -1279,9 +1267,6 @@ float (entity me) norse_checkgap =
    start = me.origin + ahead * (dist - fwd_inc);
    end = start;
    end_z = end_z - trace_dist;
-
-   local float fwd;
-   local float f;
 
    while (i < 4)
    {
@@ -1632,7 +1617,7 @@ float (entity me, vector org, vector dir) check_traj_pt =
    if (trace_fraction < 1)
       return TRUE;
 
-
+	return FALSE;
 };
 
 
@@ -1640,7 +1625,7 @@ float () norse_jump =
 {
    if (!(self.flags & FL_ONGROUND))
    {
-      return;
+      return FALSE;
    }
 
    local vector  dir, actual_origin, dir_angles;
@@ -1744,7 +1729,7 @@ void() norse_swim =
 {  //bprint("norse_swim - ");
 
    local vector   norm_vel;
-   local float pc, dist;
+   local float dist;
 
    local vector  dir, actual_origin, dir_angles;
    actual_origin = real_origin(self.goalentity);
@@ -2405,8 +2390,8 @@ float() norse_CheckWaterJump =
    local vector start, end;
    local float waste;
    local float dist;
-   local float checka1, checka2, checka3;
-   local float checkb1, checkb2, checkb3;
+   local float checka1;
+   local float checkb1;
    local float incline1, incline2, incline3;
 
 // check for a jump-out-of-water
@@ -2643,7 +2628,6 @@ float() norse_CheckWaterJump =
                self.velocity_y = v_forward_y * -176;
 
                return TRUE;
-
             }
             if (dist < 0.78)
             {
@@ -2659,6 +2643,7 @@ float() norse_CheckWaterJump =
 
 		}
 	}
+	return FALSE;
 };
 
 

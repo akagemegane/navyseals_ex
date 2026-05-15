@@ -1,7 +1,7 @@
 /*
 ==============================================================================
 
-OLD ONE
+OLD ONE (Shub-Niggurath)
 
 ==============================================================================
 */
@@ -19,17 +19,15 @@ void() finale_4;
 
 entity	shub;
 
-$frame old1 old2 old3 old4 old5 old6 old7 old8 old9 
-$frame old10 old11 old12 old13 old14 old15 old16 old17 old18 old19 
-$frame old20 old21 old22 old23 old24 old25 old26 old27 old28 old29 
-$frame old30 old31 old32 old33 old34 old35 old36 old37 old38 old39 
-$frame old40 old41 old42 old43 old44 old45 old46 
+$frame old1 old2 old3 old4 old5 old6 old7 old8 old9
+$frame old10 old11 old12 old13 old14 old15 old16 old17 old18 old19
+$frame old20 old21 old22 old23 old24 old25 old26 old27 old28 old29
+$frame old30 old31 old32 old33 old34 old35 old36 old37 old38 old39
+$frame old40 old41 old42 old43 old44 old45 old46
 
 $frame shake1 shake2 shake3 shake4 shake5 shake6 shake7 shake8
-$frame shake9 shake10 shake11 shake12 shake12 shake13 shake14
-$frame shake15 shake16 shake17 shake18 shake19 shake20
-
-//void() old_stand     =[      $old1,       old_stand    ] {};
+$frame shake9 shake10 shake11 shake12 shake13 shake14 shake15
+$frame shake16 shake17 shake18 shake19 shake20 shake21
 
 void() old_idle1        =[      $old1,  old_idle2       ] {};
 void() old_idle2        =[      $old2,  old_idle3       ] {};
@@ -93,10 +91,12 @@ void() old_thrash11       =[      $shake11, old_thrash12      ] {lightstyle(0, "
 void() old_thrash12       =[      $shake12, old_thrash13      ] {lightstyle(0, "i");};
 void() old_thrash13       =[      $shake13, old_thrash14      ] {lightstyle(0, "k");};
 void() old_thrash14       =[      $shake14, old_thrash15      ] {lightstyle(0, "m");};
-void() old_thrash15       =[      $shake15, old_thrash16      ] {lightstyle(0, "m");
-self.cnt = self.cnt + 1;
-if (self.cnt != 3)
-	self.think = old_thrash1;
+void() old_thrash15       =[      $shake15, old_thrash16      ]
+{
+	lightstyle(0, "m");
+	self.cnt = self.cnt + 1;
+	if (self.cnt != 3)
+		self.think = old_thrash1;
 };
 void() old_thrash16       =[      $shake16, old_thrash17      ] {lightstyle(0, "g");};
 void() old_thrash17       =[      $shake17, old_thrash18      ] {lightstyle(0, "c");};
@@ -108,8 +108,8 @@ void() old_thrash20       =[      $shake20, old_thrash20      ] {finale_4();};
 
 void() finale_1 =
 {
-	local entity	pos, pl;
-	local entity	timer;
+	local entity pos, pl;
+	local entity timer;
 
 	intermission_exittime = time + 10000000;	// never allow exit
 	intermission_running = 1;
@@ -124,7 +124,7 @@ void() finale_1 =
 	remove (pl);
 
 	WriteByte (MSG_ALL, SVC_FINALE);
-	WriteString (MSG_ALL, "");
+	WriteString (MSG_ALL, string_null);
 
 	pl = find (world, classname, "player");
 	while (pl != world)
@@ -140,23 +140,22 @@ void() finale_1 =
 		pl.modelindex = 0;
 		setorigin (pl, pos.origin);
 		pl = find (pl, classname, "player");
-	}	
-	
+	}
+
 	// make fake versions of all players as standins, and move the real
 	// players to the intermission spot
-	
+
 	// wait for 1 second
 	timer = spawn();
 	timer.nextthink = time + 1;
-	timer.think = finale_2;	
+	timer.think = finale_2;
 };
 
 void() finale_2 =
 {
-	local vector	o;
+	local vector o;
 
 	// start a teleport splash inside shub
-
 	o = shub.origin - '0 100 0';
 	WriteByte (MSG_BROADCAST, SVC_TEMPENTITY);
 	WriteByte (MSG_BROADCAST, TE_TELEPORT);
@@ -165,7 +164,7 @@ void() finale_2 =
 	WriteCoord (MSG_BROADCAST, o_z);
 
 	sound (shub, CHAN_VOICE, "misc/r_tele1.wav", 1, ATTN_NORM);
-	
+
 	self.nextthink = time + 2;
 	self.think = finale_3;
 };
@@ -175,19 +174,19 @@ void() finale_3 =
 	// start shub thrashing wildly
 	shub.think = old_thrash1;
 	sound (shub, CHAN_VOICE, "boss2/death.wav", 1, ATTN_NORM);
-	lightstyle(0, "abcdefghijklmlkjihgfedcb");	
+	lightstyle(0, "abcdefghijklmlkjihgfedcb");
 };
 
 void() finale_4 =
 {
-	// throw tons of meat chunks	
-	local	vector	oldo;
-	local	float	x, y, z;
-	local	float	r;
-	local entity	n;
+	// throw tons of meat chunks
+	local vector oldo;
+	local float x, y, z;
+	local float r;
+	local entity n;
 
 	sound (self, CHAN_VOICE, "boss2/pop2.wav", 1, ATTN_NORM);
-	
+
 	oldo = self.origin;
 
 	z = 16;
@@ -204,7 +203,7 @@ void() finale_4 =
 				self.origin_z = oldo_z + z;
 
 				r = random();
-				if (r < 0.3)				
+				if (r < 0.3)
 					ThrowGib ("progs/gib1.mdl", -999);
 				else if (r < 0.6)
 					ThrowGib ("progs/gib2.mdl", -999);
@@ -220,7 +219,7 @@ void() finale_4 =
 	WriteByte (MSG_ALL, SVC_FINALE);
 	WriteString (MSG_ALL, "Congratulations and well done! You have\nbeaten the hideous Shub-Niggurath, and\nher hundreds of ugly changelings and\nmonsters. You have proven that your\nskill and your cunning are greater than\nall the powers of Quake. You are the\nmaster now. Id Software salutes you.");
 
-// put a player model down
+	// put a player model down
 	n = spawn();
 	setmodel (n, "progs/player.mdl");
 	oldo = oldo - '32 264 0';
@@ -230,22 +229,19 @@ void() finale_4 =
 
 	remove (self);
 
-// switch cd track
+	// switch cd track
 	WriteByte (MSG_ALL, SVC_CDTRACK);
 	WriteByte (MSG_ALL, 3);
 	WriteByte (MSG_ALL, 3);
-	lightstyle(0, "m");	
+	lightstyle(0, "m");
 };
 
 //============================================================================
 
-void () nopain =
+void (entity attacker, float damage) oldone_pain =
 {
 	self.health = 40000;
 };
-
-//============================================================================
-
 
 /*QUAKED monster_oldone (1 0 0) (-16 -16 -24) (16 16 32)
 */
@@ -266,18 +262,19 @@ void() monster_oldone =
 
 	self.solid = SOLID_SLIDEBOX;
 	self.movetype = MOVETYPE_STEP;
-	
+
 	setmodel (self, "progs/oldone.mdl");
 	setsize (self, '-160 -128 -24', '160 128 256');
 
-	self.health = 40000;		// kill by telefrag
+	// kill by telefrag
+	self.health = 40000;
 	self.think = old_idle1;
-	self.nextthink = time + 0.1;	
+	self.nextthink = time + 0.1;
 	self.takedamage = DAMAGE_YES;
-	self.th_pain = nopain;
+	self.th_pain = oldone_pain;
 	self.th_die = finale_1;
 	shub = self;
-	
+
 	total_monsters = total_monsters + 1;
 };
 

@@ -158,6 +158,8 @@ entity() FindIntermission =
 		return spot;
 	
 	objerror ("FindIntermission: no spot");
+	// avoid compiler warning
+	return world;
 };
 
 
@@ -316,8 +318,6 @@ void() execute_changelevel =
 
 void() changelevel_touch =
 {
-	local entity	pos;
-
 	if (other.classname != "player")
 		return;
 
@@ -525,7 +525,6 @@ called each time a player is spawned
 void() DecodeLevelParms;
 void() PlayerDie;
 
-
 void() PutClientInServer =
 {
 	local	entity spot;
@@ -548,8 +547,7 @@ void() PutClientInServer =
 	self.invincible_finished = 0;
 	self.effects = 0;
 	self.invincible_time = 0;
-	self.use_clip_as_ammo = TRUE;
-	self.zoomlevel = 0;
+
 	DecodeLevelParms ();
 
 	W_SetCurrentAmmo ();
@@ -559,26 +557,23 @@ void() PutClientInServer =
 	self.th_die = PlayerDie;
 
 	self.deadflag = DEAD_NO;
-// paustime is set by teleporters to keep the player from moving a while
+	// paustime is set by teleporters to keep the player from moving a while
 	self.pausetime = 0;
-
-//	spot = SelectSpawnPoint ();
 
 	self.origin = spot.origin + '0 0 1';
 	self.angles = spot.angles;
 	self.fixangle = TRUE;		// turn this way immediately
 
-// oh, this is a hack!
+	// oh, this is a hack!
 	setmodel (self, "progs/eyes.mdl");
 	modelindex_eyes = self.modelindex;
 
 	setmodel (self, "progs/player.mdl");
-        self.skin = 0;
-        modelindex_player = self.modelindex;
+	modelindex_player = self.modelindex;
 
 	setsize (self, VEC_HULL_MIN, VEC_HULL_MAX);
 
-        self.view_ofs = '0 0 22';
+	self.view_ofs = '0 0 22';
 
 	player_stand1 ();
 
@@ -586,11 +581,10 @@ void() PutClientInServer =
 	{
 		makevectors(self.angles);
 		spawn_tfog (self.origin + v_forward*20);
-        }
+	}
 
 	spawn_tdeath (self.origin, self);
 };
-
 
 /*
 =============================================================================
@@ -796,7 +790,6 @@ void() CheckRules =
 
 void() PlayerDeathThink =
 {
-	local entity	old_self;
 	local float		forward;
 
 	if ((self.flags & FL_ONGROUND))
@@ -831,8 +824,6 @@ void() PlayerDeathThink =
 
 void() PlayerJump =
 {
-	local vector start, end;
-
 	if (self.flags & FL_WATERJUMP)
 		return;
 
@@ -1003,10 +994,6 @@ Called every frame before physics are run
 */
 void() PlayerPreThink =
 {
-	local	float	mspeed, aspeed;
-	local	float	r;
-      local vector temp;
-
 	if (intermission_running)
 	{
                 self.sight_active = FALSE;
@@ -1218,9 +1205,6 @@ Called every frame after physics are run
 */
 void() PlayerPostThink =
 {
-	local	float	mspeed, aspeed;
-	local	float	r;
-
 	if (self.view_ofs == '0 0 0')
 		return;		// intermission or finale
 	if (self.deadflag)

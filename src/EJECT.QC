@@ -1,10 +1,8 @@
-
 void () shell_touch;
 
 void (vector org, vector dir) eject_shell = {
 
    local float r;
-   local string temp;
 
    makevectors (self.v_angle);
    newmis = spawn ();
@@ -97,9 +95,9 @@ void () shell_touch = {
    if (self.owner.weaponmodel == "progs/v_mk23.mdl")
     sound (self,CHAN_WEAPON,"weapons/shellhit.wav",TRUE,ATTN_NORM);
    else if (self.owner.weaponmodel == "progs/v_shotgun.mdl")
-    sound (self,CHAN_WEAPON,"weapons/shellhit2.wav",TRUE,ATTN_NORM);
+    sound (self,CHAN_WEAPON,"weapons/shellht2.wav",TRUE,ATTN_NORM);
    else
-    sound (self,CHAN_WEAPON,"weapons/shellhit3.wav",TRUE,ATTN_NORM);
+    sound (self,CHAN_WEAPON,"weapons/shellht3.wav",TRUE,ATTN_NORM);
       
       
 

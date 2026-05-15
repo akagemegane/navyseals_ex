@@ -122,7 +122,7 @@ W_FireRaw
 */
 void() W_FireRaw =
 {
-	local	entity missile, mpuff;
+	local	entity missile;
 	
 	self.currentammo = self.ammo_rockets = self.ammo_rockets - 1;
 	

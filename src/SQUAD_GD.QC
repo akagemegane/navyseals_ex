@@ -375,7 +375,7 @@ void()  Squad_Anim_Gd_Stuff9 =[$run9, Squad_Anim_Gd_Stuff1 ] {Squad_AI_HuntStuff
 
 void()  Squad_Anim_Gd_StrafeLeft1 =
   [$lstrafe2, Squad_Anim_Gd_StrafeLeft2 ]
-  { Squad_Behavior_Strafe(04); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(4); Squad_EveryFrame(); };
 void()  Squad_Anim_Gd_StrafeLeft2 =
   [$rstrafe6, Squad_Anim_Gd_StrafeLeft3 ]
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
@@ -384,13 +384,13 @@ void()  Squad_Anim_Gd_StrafeLeft3 =
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
 void()  Squad_Anim_Gd_StrafeLeft4 =
   [$rstrafe2, Squad_Anim_Gd_StrafeLeft1 ]
-  { Squad_Behavior_Strafe(04); Squad_AI_StrafeFinish();
+  { Squad_Behavior_Strafe(4); Squad_AI_StrafeFinish();
     Squad_EveryFrame();
   };
 
 void()  Squad_Anim_Gd_StrafeRight1 =
   [$rstrafe2, Squad_Anim_Gd_StrafeRight2 ]
-  { Squad_Behavior_Strafe(04); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(4); Squad_EveryFrame(); };
 void()  Squad_Anim_Gd_StrafeRight2 =
   [$lstrafe2, Squad_Anim_Gd_StrafeRight3 ]
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
@@ -399,7 +399,7 @@ void()  Squad_Anim_Gd_StrafeRight3 =
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
 void()  Squad_Anim_Gd_StrafeRight4 =
   [$lstrafe2, Squad_Anim_Gd_StrafeRight1 ]
-  { Squad_Behavior_Strafe(04); Squad_AI_StrafeFinish();
+  { Squad_Behavior_Strafe(4); Squad_AI_StrafeFinish();
     Squad_EveryFrame();
   };
 
@@ -694,7 +694,6 @@ void()  Squad_Anim_Gd_AttackMeleeApproach9 =
 //
 void()  Squad_Anim_Gd_AttackMachinegun =
 { self.nextthink = time + 0.03;
-  local float r;
   local float r;
   r = random();
   if (r < 0.8)

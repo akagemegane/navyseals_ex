@@ -415,7 +415,7 @@ void (entity squad, entity member) Squad_Team_StartAmbush =
   squad.origin     = member.origin;
 
   // now instruct bots
-  local entity teamMate, candidate;
+  local entity teamMate;
   teamMate  = find(world, classname, "bot");
   while (teamMate != world)
     { if ((teamMate.team == member.team) &&
@@ -1018,7 +1018,7 @@ void (entity member) Squad_Team_DismissFromFormation =
 //
 float (entity squad, entity point1, entity point2) Squad_Team_NeedsSpreadOut =
 { // lookup all members of the team near point1
-  local entity member1, member2, member3, member4, member;
+  local entity member;
   local float  fDist, nrMembers, nrLinesOfFire;
   nrMembers     = 0;
   nrLinesOfFire = 0;
@@ -1542,8 +1542,8 @@ entity (float teamId, entity point) Squad_Team_SpawnAssemblyPositions =
       //             <- 180 ->
       //       <-  <1  2   3    4>
       //             v    v
-      local vector vAngles;
-      local vector vOffset;
+      //local vector vAngles;
+      //local vector vOffset;
       vAngles   = '0 0 0';
       vAngles_y = anglemod(assemblyYaw);
       makevectors(vAngles);

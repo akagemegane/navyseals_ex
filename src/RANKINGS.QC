@@ -210,7 +210,6 @@ sample routine for connecting a bot
 void (entity bot) botConnect =
 {
    local float clientno;
-   local entity bot;
 
    clientno = clientNextAvailable();
 
@@ -348,7 +347,6 @@ sends an update client name message to a player in the game
 void( entity player, float clientno, string clientname ) msgUpdateNameToPlayer =
 {
    msgUpdateNameToAll( clientno, clientname );
-   return;
 
    msg_entity = player;
    WriteByte( MSG_ONE, MSG_UPDATENAME );
@@ -367,7 +365,6 @@ sends an update client colors message to a player in the game
 void( entity player, float clientno, float clientshirt, float clientpants ) msgUpdateColorsToPlayer =
 {
    msgUpdateColorsToAll( clientno, clientshirt, clientpants );
-   return;
 
    msg_entity = player;
    WriteByte( MSG_ONE, MSG_UPDATECOLORS );
@@ -386,7 +383,6 @@ sends an update client frags message to a player in the game
 void( entity player, float clientno, float clientfrags ) msgUpdateFragsToPlayer =
 {
    msgUpdateFragsToAll( clientno, clientfrags );
-   return;
 
    msg_entity = player;
    WriteByte( MSG_ONE, MSG_UPDATEFRAGS );

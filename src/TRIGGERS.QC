@@ -1,5 +1,5 @@
 
-entity stemp, otemp, s, old;
+entity s;
 
 
 void() trigger_reactivate =
@@ -234,8 +234,6 @@ void() counter_use =
               multi_trigger ();
               return;
 	}
-
-	local string junk;
 
 	self.count = self.count - 1;
 	if (self.count < 0)

@@ -197,7 +197,7 @@ void () Waypoint_FillMap =
   local entity point;
   point = find(world, classname, "waypoint");
   if (point != world)
-    { local float dummy;
+    { 
       // not much to do
     }
   else

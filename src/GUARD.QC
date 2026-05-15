@@ -695,7 +695,7 @@ void()	Guard_Melee =
 
 void() guardFireGrenade =
 {
-	local	entity missile, mpuff;
+	local	entity missile;
 	
 
 	missile = spawn ();

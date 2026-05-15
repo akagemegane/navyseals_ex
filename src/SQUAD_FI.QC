@@ -528,7 +528,7 @@ void () W_PredictMissileDestination =
 
   // predict path
   local float  t, tE, dt, g, ok;
-  local vector p1, p2, o1, vl, vh;
+  local vector p1, p2, o1, vl;
   g    = cvar("sv_gravity");
   dt   = 0.1;
   vl   = self.velocity;

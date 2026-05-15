@@ -349,7 +349,6 @@ entity teamAlpha;
 
 // globals team Alpha
 float  alphaTeamSize;                 // initialized in Squad_Precache
-float  alphaNextDropMoment;           // time to drop next team member (0 == don't drop)
 
 // team behavior specific globals
 entity alphaPointMember;              // most forward alpha member
@@ -362,8 +361,6 @@ entity alpha3;
 entity alpha4;
 
 entity alphaAssemblyLocation;
-float  alphaAssemblyFormation;
-float  alphaAssemblyYaw;
 entity alphaAssembly1;
 entity alphaAssembly2;
 entity alphaAssembly3;

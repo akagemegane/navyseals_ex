@@ -610,62 +610,62 @@ void () Squad_Anim_Strafe =
 
 void()  Squad_Anim_Pd_StrafeRight1 =
   [$firec1, Squad_Anim_Pd_StrafeRight2 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight2 =
   [$firec2, Squad_Anim_Pd_StrafeRight3 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight3 =
   [$firec3, Squad_Anim_Pd_StrafeRight4 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight4 =
   [$firec5, Squad_Anim_Pd_StrafeRight5 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight5 =
   [$firec7, Squad_Anim_Pd_StrafeRight6 ]
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight6 =
   [$firec9, Squad_Anim_Pd_StrafeRight7 ]
-  { Squad_Behavior_Strafe(05); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(5); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight7 =
   [$firec11, Squad_Anim_Pd_StrafeRight8 ]
-  { Squad_Behavior_Strafe(03); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(3); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight8 =
   [$firec13, Squad_Anim_Pd_StrafeRight9 ]
-  { Squad_Behavior_Strafe(05); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(5); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeRight9 =
   [$firec15, Squad_Anim_Pd_StrafeRight1 ]
-  { Squad_Behavior_Strafe(04); Squad_AI_StrafeFinish();
+  { Squad_Behavior_Strafe(4); Squad_AI_StrafeFinish();
     Squad_EveryFrame();
   };
 
 
 void()  Squad_Anim_Pd_StrafeLeft1 =
   [$firec15, Squad_Anim_Pd_StrafeLeft2 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft2 =
   [$firec13, Squad_Anim_Pd_StrafeLeft3 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft3 =
   [$firec11, Squad_Anim_Pd_StrafeLeft4 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft4 =
   [$firec9, Squad_Anim_Pd_StrafeLeft5 ]
-  { Squad_Behavior_Strafe(00); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(0); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft5 =
   [$firec7, Squad_Anim_Pd_StrafeLeft6 ]
   { Squad_Behavior_Strafe(10); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft6 =
   [$firec5, Squad_Anim_Pd_StrafeLeft7 ]
-  { Squad_Behavior_Strafe(05); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(5); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft7 =
   [$firec3, Squad_Anim_Pd_StrafeLeft8 ]
-  { Squad_Behavior_Strafe(03); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(3); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft8 =
   [$firec2, Squad_Anim_Pd_StrafeLeft9 ]
-  { Squad_Behavior_Strafe(05); Squad_EveryFrame(); };
+  { Squad_Behavior_Strafe(5); Squad_EveryFrame(); };
 void()  Squad_Anim_Pd_StrafeLeft9 =
   [$firec1, Squad_Anim_Pd_StrafeLeft1 ]
-  { Squad_Behavior_Strafe(04); Squad_AI_StrafeFinish();
+  { Squad_Behavior_Strafe(4); Squad_AI_StrafeFinish();
     Squad_EveryFrame();
   };
 
@@ -1488,7 +1488,7 @@ void() Squad_Anim_Attack =
       else
       // use hand grenade if allowed by team, enemy is not near
       // and team mates cannot be hurt by grenade
-        { local float fGrenadeType;
+        { 
           fGrenadeType = Squad_AI_ShouldUseHandGrenade(self, self.enemy);
           if (fGrenadeType != SQUAD_NO_GRENADE)
             Squad_Anim_AttackHandGrenade(fGrenadeType);
