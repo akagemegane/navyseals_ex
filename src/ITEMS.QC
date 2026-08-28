@@ -580,20 +580,11 @@ void() weapon_touch =
 	stemp = self;
 	self = other;
 
-
-	// AKAGE: Might disable auto weapon switch
-		if (!self.reload)
-        {
-        if (!deathmatch)
-                 self.weapon = new;
-        else
-                 Deathmatch_Weapon (old, new);
-        }
-
-        // SEAL sQad modification, bot gets notified and picks best weapon
+		// AKAGE: Disable automatic weapon switching
         if (self.classname == "player" && !self.reload)
         {
-            W_SetCurrentAmmo();
+            if (!(self.weapon == WP_ONE && self.hgrenade == 1 && self.attack_finished > time))
+                W_SetCurrentAmmo();
         }
 		else if (self.classname == "bot")
 		{ // notify pick up to SquadMember
@@ -773,22 +764,17 @@ local float		best;
             // ammo touch sound
             sound (other, CHAN_ITEM, "weapons/lock4.wav", 1, ATTN_NORM);
             stuffcmd (other, "bf\n");
-            // change to a better weapon if appropriate
+            // AKAGE: No more automatic weapon switching on pickup + never jam
+			// in-progress hand grenade prime called by player_run inside W_SetCurrentAmmo
             if (!other.reload)
             {
-              if ( other.weapon == best )
+              if (!(other.weapon == WP_ONE && other.hgrenade == 1 && other.attack_finished > time))
               {
-                 stemp = self;
-                 self = other;
-                 self.weapon = W_BestWeapon();
-                 W_SetCurrentAmmo ();
-                 self = stemp;
+                stemp = self;
+                self = other;
+                W_SetCurrentAmmo();
+                self = stemp;
               }
-            
-              stemp = self;
-              self = other;
-              W_SetCurrentAmmo();
-              self = stemp;
             }
           }
         if (other.classname == "bot")
@@ -1451,13 +1437,10 @@ void() BackpackTouch =
           self = other;
           if (!self.reload)
           {
-            // change to the weapon
-            if (!deathmatch)
-                    self.weapon = new;
-            else
-                    Deathmatch_Weapon (old, new);
-
-            W_SetCurrentAmmo (); // BUG, removed in NS2.0
+            // AKAGE: No more automatic weapon switching on pickup + never jam
+			// in-progress hand grenade prime called by player_run inside W_SetCurrentAmmo
+            if (!(self.weapon == WP_ONE && self.hgrenade == 1 && self.attack_finished > time))
+                W_SetCurrentAmmo ();
           }
         }
 

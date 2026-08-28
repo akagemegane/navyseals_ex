@@ -1649,37 +1649,27 @@ void() W_ChangeWeapon =
 	  if (self.zoomlevel != 0)
 	   return;
 
-// AKAGE : Disabled the hand grenades until I figure out a solution to the lockup problem
-/*
+// AKAGE : Brought back the hand grenades after temporarily disabling it.
 	if (self.impulse == 1)
 	{
-          if (self.ammo_rockets < 1)
-           {
-            fl = WP_ONE;
-            self.hgrenade = 0;
-           }
-           else
-           {
-            if (self.hgrenade == 1)
-             {
-              fl = WP_ONE;
-              self.hgrenade = 0;
-             }
-            else
-             {
-              fl = WP_ONE;
-              self.hgrenade = 1;
-             }
-           }
-	}
-*/
-
-	if (self.impulse == 1)
-	{
-           {
-            fl = WP_ONE;
-            self.hgrenade = 0;
-           }
+	  if (self.ammo_rockets < 1)
+	   {
+	    fl = WP_ONE;
+	    self.hgrenade = 0;
+	   }
+	   else
+	   {
+	    if (self.hgrenade == 1)
+	     {
+	      fl = WP_ONE;
+	      self.hgrenade = 0;
+	     }
+	    else
+	     {
+	      fl = WP_ONE;
+	      self.hgrenade = 1;
+	     }
+	   }
 	}
 
 	else if (self.impulse == 2)
