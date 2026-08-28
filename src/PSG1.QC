@@ -131,19 +131,11 @@ void () W_FirePSG1 = {
    self.punchangle_x = random() * -2;
    dir = aim (self,1000.000);
    makevectors (self.v_angle);
-   src = (self.origin + (v_forward * TE_LAVASPLASH));
-   src_z = (self.absmin_z + (self.size_z * 0.800));
-   src_y = (self.absmin_y + (self.size_y * 0.400));
+   // AKAGE : Make hitscan dead center
+   src = self.origin + self.view_ofs;
    ClearMultiDamage ();
 
-   if (self.zoomlevel != 0)
-   {
-     traceline (src,src + (v_forward * IT_CELLS),FALSE,self);
-   }
-   else
-   {
-     traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * 90.000) - (v_right * 120) ) ),FALSE,self);
-   }
+   traceline (src,src + (v_forward * IT_CELLS),FALSE,self);
    if ( (vlen(trace_endpos - self.origin))  < 250)
     {
      PSG1_TraceAttack(180.000,dir);

@@ -122,24 +122,23 @@ void () W_FireMP5 = {
    self.punchangle_x = -2;
    dir = aim (self,1000.000);
    makevectors (self.v_angle);
-   src = (self.origin + (v_forward * TE_LAVASPLASH));
-   src_z = (self.absmin_z + (self.size_z * 0.800));
-   src_y = (self.absmin_y + (self.size_y * 0.400));
+   // AKAGE : Make hitscan dead center
+   src = self.origin + self.view_ofs;
    ClearMultiDamage ();
    if (self.semiauto == 0)
      {
-      traceline (src, (src + (v_forward * IT_CELLS) ) - (v_up * 110) - (v_right * 55), 0, self);
+      traceline (src, (src + (v_forward * IT_CELLS) ), 0, self);
      }
    else if (self.semiauto == 1)
      {
-    traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (94.000 + (r * 32.000))) -    
-    (v_right * (39 + (r * 32) ) ) ) ),FALSE,self);
+    traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (crandom() * 32.000)) -
+    (v_right * (crandom() * 32) ) ) ),FALSE,self);
      }
    else if (self.semiauto == 2)
      {
     temp = self.muzzleclimb * 30;
-    traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (87.000 + (r * 46.000) - temp)) -    
-    (v_right * (22 + (r * 46) ) ) ) ),FALSE,self);
+    traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (crandom() * 46.000 - temp)) -
+    (v_right * (crandom() * 46) ) ) ),FALSE,self);
      }
 
    

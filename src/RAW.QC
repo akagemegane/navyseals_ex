@@ -150,6 +150,7 @@ void() W_FireRaw =
 
 	setmodel (missile, "progs/raw.mdl");
 	setsize (missile, '0 0 0', '0 0 0');		
-	setorigin (missile, self.origin + (v_forward * 10.000) - (v_right * 21.000) + (v_up * 3.000));
+	// AKAGE : Make projectile dead center
+	setorigin (missile, self.origin + self.view_ofs);
 
 };

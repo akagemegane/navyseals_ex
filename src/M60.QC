@@ -111,12 +111,11 @@ void () W_FireM60 = {
    self.punchangle_x = random() * -1;
    dir = aim (self,1000.000);
    makevectors (self.v_angle);
-   src = (self.origin + (v_forward * TE_LAVASPLASH));
-   src_z = (self.absmin_z + (self.size_z * 0.800));
-   src_y = (self.absmin_y + (self.size_y * 0.400));
+   // AKAGE : Make hitscan dead center
+   src = self.origin + self.view_ofs;
    ClearMultiDamage ();
-   traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (130.000 + (r * 52.000))) -
-     (v_right * (40 + (r * 88)) ) ) ),FALSE,self);
+   traceline (src,( ( ( src + (v_forward * IT_CELLS) ) - (v_up * (crandom() * 52.000)) -
+     (v_right * (crandom() * 88.0)) ) ),FALSE,self);
 
    M60_TraceAttack (20.000,dir);
    ApplyMultiDamage ();

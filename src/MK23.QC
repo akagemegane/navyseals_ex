@@ -133,20 +133,17 @@ void () W_FireMK23 = {
    makevectors (self.angles);
    dir = aim (self,1000.000);
    makevectors (self.v_angle);
-   src = (self.origin + (v_forward * TE_LAVASPLASH));
-   src_z = (self.absmin_z + (self.size_z * 0.800));
-   src_y = (self.absmin_y + (self.size_y * 0.400));
+   // AKAGE : Make hitscan dead center
+   src = self.origin + self.view_ofs;
    ClearMultiDamage ();
    r = random ();
    if ( (time - self.lastshot) > 0.2) 
     {
-     traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * (50.000))) - 
-     (v_right * (300.000 ))),FALSE,self);
+     traceline (src,(src + (v_forward * IT_CELLS)),FALSE,self);
     }
    if ( (time - self.lastshot) <= 0.3)
     {
-     traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * (50.000 + (r * 70)))) - 
-     (v_right * (250.000 + (r * 70)))),FALSE,self);
+     traceline (src,(src + (v_forward * IT_CELLS)),FALSE,self);
     }
 
    temp = vlen(trace_endpos - self.origin);

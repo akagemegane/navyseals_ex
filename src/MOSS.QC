@@ -166,8 +166,7 @@ void(float shotcount, vector dir, vector spread) FireMossberg =
       self.targetflyonce3 = 0;
       self.flycheck = 0;
 
-	src = self.origin + v_forward*10;
-	src_z = self.absmin_z + self.size_z * 0.7;
+	src = self.origin + self.view_ofs;
       ClearMultiDamage ();
 	while (shotcount > 0)
 	{
@@ -177,8 +176,8 @@ void(float shotcount, vector dir, vector spread) FireMossberg =
              }
 		direction = dir + crandom()*spread_x*v_right + crandom()*spread_y*v_up;
 
-		traceline (src, src + direction*2048 - (v_right * 100) + (v_up * 50), FALSE, self);
-		particle(src + (v_forward * 100) - (v_right * 10),src + direction * 2048,192,random() * 10);
+		traceline (src, src + direction*2048, FALSE, self);
+		particle(src + (v_forward * 100),src + direction * 2048,192,random() * 10);
 		if (trace_fraction != 1.0)
 			MossbergTraceAttack (8, direction);
 

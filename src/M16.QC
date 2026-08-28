@@ -292,7 +292,8 @@ void() W_FireM16Grenade =
 
 	setmodel (missile, "progs/m16gren.mdl");
 	setsize (missile, '0 0 0', '1 1 1');
-	setorigin (missile, self.origin + (v_forward * 10.000) - (v_right * 21.000) + (v_up * 3.000));
+	// AKAGE : Make projectile dead center
+	setorigin (missile, self.origin + self.view_ofs);
 
 };
 
@@ -391,12 +392,10 @@ void () W_FireM16 = {
    makevectors (self.angles);
    dir = aim (self,1000.000);
    makevectors (self.v_angle);
-   src = (self.origin + (v_forward * TE_LAVASPLASH));
-   src_z = (self.absmin_z + (self.size_z * 0.800));
-   src_y = (self.absmin_y + (self.size_y * 0.400));
+  // AKAGE : Make hitscan dead center
+   src = self.origin + self.view_ofs;
    ClearMultiDamage ();
-   traceline (src,(((src + (v_forward * IT_CELLS)) - (v_up * 130.000)) - 
-                 (v_right * 220.000)),FALSE,self);
+   traceline (src,(src + (v_forward * IT_CELLS)),FALSE,self);
 
 /*
    if (trace_ent.classname == "m16grenade")
